@@ -1,6 +1,6 @@
 namespace contractor_api.Services
 {
-    public class ContactorsService
+    public class ContractorJobService
     {
         
     }

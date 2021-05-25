@@ -3,40 +3,25 @@ using contractor_api.Models;
 using contractor_api.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Job_api.Controllers
+namespace contractor_api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class JobsController : ControllerBase
+    public class ContractorJobController : ControllerBase
     {
-        // extra route: get all contractors given a job id
-        private readonly JobsService _service;
-        public JobsController(JobsService service)
+        private readonly ContractorJobService _service;
+
+        public ContractorJobController(ContractorJobService service)
         {
             _service = service;
         }
 
         [HttpPost]
-        public ActionResult<Job> Create([FromBody] Job newJob)
+        public ActionResult<ContractorJob> Create([FromBody] ContractorJob newCB)
         {
             try
             {
-                Job data = _service.Create(newJob);
-                return Ok(data);
-            }
-            catch (System.Exception e)
-            {
-
-                return BadRequest(e.Message);
-            }
-        }
-
-        [HttpGet]
-        public ActionResult<IEnumerable<Job>> GetAll()
-        {
-            try
-            {
-                IEnumerable<Job> data = _service.GetAll();
+                ContractorJob data = _service.Create(newCB);
                 return Ok(data);
             }
             catch (System.Exception e)
@@ -46,17 +31,33 @@ namespace Job_api.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Job> GetOne(int id)
+        public ActionResult<ContractorJob> GetOne(int id)
         {
             try
             {
-                Job data = _service.GetOne(id);
+                ContractorJob data = _service.GetOne(id);
                 return Ok(data);
             }
             catch (System.Exception e)
             {
 
                 return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult<string> Delete(int id)
+        {
+            try
+            {
+                string data = _service.Delete(id);
+                return Ok(data);
+
+            }
+            catch (System.Exception)
+            {
+
+                throw;
             }
         }
     }

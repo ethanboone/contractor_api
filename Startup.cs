@@ -63,12 +63,13 @@ namespace contractor_api
 
             // NOTE Transient Services
             services.AddTransient<JobsService>();
-            services.AddTransient<ContactorsService>();
+            services.AddTransient<ContractorsService>();
+            services.AddTransient<ContractorJobService>();
 
             // // NOTE Transient Repo's 
             services.AddTransient<JobsRepository>();
             services.AddTransient<ContractorsRepository>();
-
+            services.AddTransient<ContractorJobRepository>();
 
             // TODO[epic=DB] database Connection
             services.AddScoped<IDbConnection>(x => CreateDbConnection());
