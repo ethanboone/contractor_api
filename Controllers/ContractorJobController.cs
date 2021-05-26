@@ -9,6 +9,7 @@ namespace contractor_api.Controllers
     [Route("api/[controller]")]
     public class ContractorJobController : ControllerBase
     {
+        // ON CREATE THE MODEL GIVEN TO CREATE WILL BE DIFFERENT THAN THE ONE CREATE
         private readonly ContractorJobService _service;
 
         public ContractorJobController(ContractorJobService service)
